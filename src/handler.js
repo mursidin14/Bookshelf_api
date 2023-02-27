@@ -4,14 +4,15 @@ const books = require('./books');
 
 // add book
 const addBookApi = (request, h) => {
-    const { name, year, author, summary, publisher, pageCount, readPage, reading } = request.payload
+    const { name, year, author, summary, publisher, pageCount, readPage, reading } = request.payload;
   
-    const id = nanoid(16)
-    const insertedAt = new Date().toISOString()
-    const updatedAt = insertedAt
+    const id = nanoid(16);
+    const finished = pageCount == readPage ? false : true
+    const insertedAt = new Date().toISOString();
+    const updatedAt = insertedAt;
   
     const newBook = {
-      name, year, author, summary, publisher, pageCount, readPage, reading, id, insertedAt, updatedAt
+      id, name, year, author, summary, publisher, pageCount, readPage, reading, finished, insertedAt, updatedAt
     }
 
     if (name === undefined) {
